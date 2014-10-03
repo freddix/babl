@@ -1,7 +1,7 @@
 Summary:	Library for pixel-format agnosticism
 Name:		babl
 Version:	0.1.10
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		Libraries
 Source0:	ftp://ftp.gtk.org/pub/babl/0.1/%{name}-%{version}.tar.bz2
@@ -46,6 +46,7 @@ Development files for babl library.
 %configure \
 	--disable-maintainer-mode	\
 	--disable-silent-rules		\
+	--enable-introspection		\
 	--without-vala
 %{__make}
 
@@ -55,7 +56,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/babl-*/*.la
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/{,babl-*/}*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
